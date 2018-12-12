@@ -1,0 +1,8 @@
+https://docs.python.org/3/tutorial/floatingpoint.html
+https://wiki.python.org/moin/BitwiseOperators
+https://docs.python.org/3.6/library/string.html#format-string-syntax
+https://docs.python.org/3/tutorial/errors.html
+https://www.python.org/dev/peps/pep-0008/
+https://docs.python.org/2/library/ast.html
+https://pt.stackoverflow.com/questions/92921/para-que-serve-o-yield
+
