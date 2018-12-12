@@ -1,0 +1,34 @@
+Bibliotecas de terceiros
+Existem dezenas de milhares de bibliotecas de terceiros escritas por desenvolvedores independentes! Você pode instalá-las usando o pip, um gerenciador de pacotes que está incluso no Python 3. O pip é o gerenciador de pacotes padrão para o Python, mas não é o único. Uma alternativa popular é o Anaconda, que é projetado especificamente para ciência de dados.
+
+Para instalar um pacote usando o pip, basta digitar "pip install" seguido do nome do pacote em sua linha de comando, assim: pip install package_name. Isso baixa e instala o pacote para que ele esteja disponível para importação em seus programas. Uma vez instalado, você pode importar pacotes de terceiros usando a mesma sintaxe usada para importar da biblioteca padrão.
+
+Usando um arquivo requirements.txt
+Programas maiores em Python podem depender de dezenas de pacotes de terceiros. Para facilitar o compartilhamento desses programas, os programadores frequentemente listam as dependências do projeto em um arquivo chamado requirements.txt. Este é um exemplo de um arquivo requirements.txt.
+
+beautifulsoup4==4.5.1
+bs4==0.0.1
+pytz==2016.7
+requests==2.11.1
+Cada linha do arquivo inclui o nome de um pacote e seu número de versão. O número de versão é opcional, mas geralmente é incluído. Bibliotecas podem mudar sutilmente ou drasticamente entre as versões, por isso, é importante usar as mesmas versões de biblioteca que foram utilizadas para escrever o programa.
+
+Você pode usar o pip para instalar todas as dependências do projeto ao mesmo tempo, digitando pip install -r requirements.txt em sua linha de comando.
+
+Pacotes úteis de terceiros
+Ser capaz de instalar e importar bibliotecas de terceiros é útil, mas, para ser um programador eficaz, você também precisa saber quais bibliotecas estão disponíveis uso. As pessoas geralmente aprendem sobre novas bibliotecas úteis por meio de recomendações online ou de colegas. Se você for um programador novo em Python, pode não ter muitos colegas, então, para começar, aqui está uma lista de pacotes que são populares entre os engenheiros da Udacity.
+
+IPython - um interpretador interativo do Python.
+requests - fornece métodos fáceis de usar para fazer solicitações na web. Útil para acessar APIs da web.
+Flask - uma estrutura leve para fazer aplicações web e APIs.
+Django - uma estrutura mais recheada de recursos para criar aplicações web. O Django é particularmente bom para projetar aplicações web complexas e com muito conteúdo.
+Beautiful Soup - usado para analisar HTML e extrair informações a partir daí. Ótimo para web scraping.
+pytest - estende os módulos de assertivas internas e testes de unidade (unittest) do Python.
+PyYAML - para ler e gravar arquivos YAML.
+NumPy - o pacote fundamental para a computação científica com Python. Ele contém, entre outras coisas, um poderoso objeto array N-dimensional e capacidades úteis para álgebra linear.
+pandas - uma biblioteca contendo ferramentas de alto desempenho, para estruturas de dados e de análise de dados. O Pandas, em especial, fornece dataframes!
+matplotlib - uma biblioteca de plotagem 2D que produz figuras com qualidade de publicação em uma variedade de formatos em papel e ambientes interativos.
+ggplot - outra biblioteca de plotagem 2D, com base na biblioteca ggplot2 do software R.
+Pillow - a biblioteca de imagens do Python adiciona capacidades de processamento de imagens a seu interpretador Python.
+pyglet - uma estrutura de aplicação multiplataforma voltada ao desenvolvimento de jogos
+Pygame - um conjunto de módulos Python projetados para escrever jogos.
+pytz - definições de fuso horário do mundo para Python
