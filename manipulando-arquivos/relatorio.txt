@@ -1,0 +1,5 @@
+moeda;valor;mudanca;porcentagem;data
+USD/BRL-USDollarBrazilReal;3.7664;-0.0178;-0.47%;2018-11-16 12:54:11
+USD/BRL-USDollarBrazilReal;3.7621;-0.0221;-0.58%;2018-11-16 13:08:36
+USD/BRL-USDollarBrazilReal;3.8039;-0.0009;-0.02%;2018-11-23 12:05:40
+USD/BRL-USDollarBrazilReal;3.8033;-0.0014;-0.04%;2018-11-23 12:05:56
