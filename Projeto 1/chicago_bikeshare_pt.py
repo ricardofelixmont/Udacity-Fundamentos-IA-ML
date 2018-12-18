@@ -62,10 +62,9 @@ for pos, line in enumerate(data_list):
 input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
-def column_to_list(data, index): # O index deveria servir para estipular até onde desejamos copiar para a lista, porém no assert ele não faz 
-                                 # diferença, quando eu coloco data_list[:index] da o assert error. 
-    column_list = []
-    for line in data_list: # Pelo que entendi index é a posição até a qual queremos copiar para lista
+def column_to_list(data, index): # O index deveria servir para falar a posicão de qual item queremos puxar,exemplo:Genero, Trip Duration, etc
+    column_list = []             # Porém estou usando dicionario, entao o index nao é necessário e sim a chave.
+    for line in data_list: 
         column_list.append(line['Gender'])
     return column_list
 
@@ -170,16 +169,39 @@ plt.show(block=True)
 input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
+
+# Função que retorna a quantidade de customers e subscribers.
+def user_type_counter(user_type_list):
+    customer = user_type_list.count('Customer')
+    subscriber = user_type_list.count('Subscriber')
+    return [customer, subscriber]
+
+user_type_list = []
+for line in data_list: # Cada 'line' é um dicionario, que representa cada linha do arquivo csv
+    user_type_list.append(line['User Type'])
+# Elaborando o Gráfico:
+lista = user_type_list   # Esta é a lista de user_types.
+types = ["Customer", "Subscriber"]  # Tipos de user_types
+quantity = user_type_counter(user_type_list) # Pega a quantidade de Custumers e de Subscribers
+y_pos = list(range(len(types)))      # Eixo y do gráfico
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('Tipo de Cliente')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por Tipo de Cliente')
+plt.show(block=True)
+
 print("\nTAREFA 7: Verifique o gráfico!")
 
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
 # TODO: Responda a seguinte questão
+print(male, female, len(data_list))
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Escreva sua resposta aqui."
+answer = "Alguns clientes não tem genero cadastrado."
 print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -191,11 +213,49 @@ input("Aperte Enter para continuar...")
 # TAREFA 9
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
 # Você não deve usar funções prontas para isso, como max() e min().
-trip_duration_list = column_to_list(data_list, 2)
-min_trip = 0.
-max_trip = 0.
-mean_trip = 0.
-median_trip = 0.
+
+# Função que retorna uma lista com os trip_durations
+def trip_duration(data_list, index):
+    lista = []
+    for line in data_list:
+        lista.append(int(line['Trip Duration']))
+    return lista
+
+# Função que retorna o maior e o menor valor dos trip_durations
+def maximo(lista_de_duracao):
+    maior = menor = lista_de_duracao[0]
+    for duracao in lista_de_duracao:
+        if maior < duracao:
+            maior = duracao
+        elif menor > duracao:
+            menor = duracao
+    return [menor, maior]
+
+# Calcula a mediana
+def mediana(trip_duration_list):
+    trip_duration_list.sort()
+    mediana = 0
+    tamanho_da_lista = len(trip_duration_list)
+    if tamanho_da_lista % 2 == 0:
+        x = trip_duration_list[tamanho_da_lista//2 -1]
+        y = trip_duration_list[tamanho_da_lista//2]
+        mediana = x+y/2
+    else:
+        z = trip_duration_list[tamanho_da_lista//2 + 1]   
+        mediana = z
+    return mediana
+
+trip_duration_list = trip_duration(data_list, 2) # O número 2 é o index da coluna que eu quero, no caso trip duration. Porém estou usando dict
+
+soma = sum(trip_duration_list)
+tamanho = len(trip_duration_list)
+min_trip,max_trip = maximo(trip_duration_list)
+
+# Calculo da média
+mean_trip = soma/tamanho
+
+# Caculando a mediana
+median_trip = mediana(trip_duration_list)
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
@@ -213,6 +273,9 @@ input("Aperte Enter para continuar...")
 # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
 start_stations = set()
+
+for line in data_list:
+    start_stations.add(line['Start Station'])
 
 print("\nTAREFA 10: Imprimindo as start stations:")
 print(len(start_stations))
