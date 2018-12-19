@@ -9,6 +9,8 @@ print("Lendo o documento...")
 with open("chicago.csv", "r") as file_read:
     reader = csv.DictReader(file_read) # Pelo que parece a parte que demora é no carregamento do arquivo...
     data_list = list(reader)
+    # data_list é uma lista de dicionarios ordenados, então cada linha do arquivo csv
+    # é um dicionario
 print("Ok!")
 
 # Vamos verificar quantas linhas nós temos
@@ -18,12 +20,14 @@ print(len(data_list))
 # Imprimindo a primeira linha de data_list para verificar se funcionou.
 print("Linha 0: ")
 count = 0
+
 for line in data_list:
+# line é um dicionario
     if count == 0:
         for cabecalho in line.items():
             print(cabecalho[0], end=';')
         count += 1
-# É o cabeçalho dos dados, para que possamos identificar as colunas.
+# A primeira linha é o cabeçalho dos dados, para que possamos identificar as colunas, o DictReader() faz isso automaticamente.
 
 # Imprimindo a segunda linha de data_list, ela deveria conter alguns dados
 print("\nLinha 1: ")
@@ -40,9 +44,11 @@ for pos, line in enumerate(data_list):
     if pos < 20:
         print(f'{line["Start Time"]}:{line["End Time"]}:{line["Trip Duration"]}:{line["Start Station"]}:{line["End Station"]}:{line["User Type"]}:{line["Gender"]}:{line["Birth Year"]}')
 
+
 # Vamos mudar o data_list para remover o cabeçalho dele.
 # data_list = data_list[1:] 
 # Não precisamos mais dessa linha pois usando dicionarios, o cabeçalho é omitido automaticamente
+# Agora podemos acessar as features pela chave, por exemplo: sample['Genero'] para imprimir o genero
 
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
@@ -62,7 +68,20 @@ for pos, line in enumerate(data_list):
 input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
+
+# A necessidade de satisfazer o assert limitou o uso do dicionario, poderia passar a chave como agumento ao inves do nome.
 def column_to_list(data, index): # O index deveria servir para falar a posicão de qual item queremos puxar,exemplo:Genero, Trip Duration, etc
+    # def new_function(param1: list, param2: int) -> list:
+"""
+      Função de exemplo com algumas anotações.
+      Argumentos:
+          data: é uma lista de dicionarios.
+          index: não serve para nada pois estou usando dicionario, só mantive pois o assert me obrigou.
+      Retorna:
+          Uma lista de elementos de uma coluna.
+
+"""
+
     column_list = []             # Porém estou usando dicionario, entao o index nao é necessário e sim a chave.
     for line in data_list: 
         column_list.append(line['Gender'])
@@ -110,6 +129,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
+    # def new_function(param1: list) -> list:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          data_list: lista de dicionarios, criada com DictReader().
+      Retorna:
+          Uma lista com a quantidade de homens e a quantidade de mulheres.
+
+"""
+
     male = 0
     female = 0
     for genero in column_to_list(data_list, 0):
@@ -135,6 +164,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
+        # def new_function(param1: list) -> string:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          data_list: lista de dicionarios, criada com DictReader().
+      Retorna:
+          Uma string com o genero mais popular.
+
+"""
+
     lista = count_gender(data_list)
     answer = ""
     if lista[0] > lista[1]:
@@ -172,6 +211,16 @@ input("Aperte Enter para continuar...")
 
 # Função que retorna a quantidade de customers e subscribers.
 def user_type_counter(user_type_list):
+        # def new_function(param1: list) -> list:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          data_list: lista de dicionarios, criada com DictReader().
+      Retorna:
+          Uma lista com a quantidade de customers e quantidade de subscriber.
+
+"""
+
     customer = user_type_list.count('Customer')
     subscriber = user_type_list.count('Subscriber')
     return [customer, subscriber]
@@ -216,6 +265,17 @@ input("Aperte Enter para continuar...")
 
 # Função que retorna uma lista com os trip_durations
 def trip_duration(data_list, index):
+    # def new_function(param1: list, param2: int) -> list:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          data_list: lista de dicionarios, criada com DictReader().
+          index: não serve para nada, pois estou usando dicionarios, apenas mative pois o assert me obriga a receber um int como parametro
+      Retorna:
+          Uma lista com os Trip Durations.
+
+"""
+
     lista = []
     for line in data_list:
         lista.append(int(line['Trip Duration']))
@@ -223,6 +283,16 @@ def trip_duration(data_list, index):
 
 # Função que retorna o maior e o menor valor dos trip_durations
 def maximo(lista_de_duracao):
+        # def new_function(param1: list) -> list:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          lista_de_duracao: lista de duracões.
+      Retorna:
+          Uma lista com a maior duração e a menor duração.
+
+"""
+
     maior = menor = lista_de_duracao[0]
     for duracao in lista_de_duracao:
         if maior < duracao:
@@ -233,6 +303,16 @@ def maximo(lista_de_duracao):
 
 # Calcula a mediana
 def mediana(trip_duration_list):
+        # def new_function(param1: list) -> float:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          trip_duration_list: lista de trip_durations.
+      Retorna:
+          Mediana da lista de duração de viagem.
+
+"""
+
     trip_duration_list.sort()
     mediana = 0
     tamanho_da_lista = len(trip_duration_list)
@@ -304,11 +384,32 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
+
+# Abrindo arquivo de novo para poder usar como lista, com dictReader() não posso satisfazer os parametros do assert que a Udacity criou
+#with open("chicago.csv", "r") as file_read:dd
+#    reader_desafio = csv.reader(file_read)
+#    data_list_desafio = list(reader_desafio)
 
 def count_items(column_list):
+        # def new_function(param1: list) -> list:
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          column_list: lista de elementos de uma coluna qualquer.
+      Retorna:
+          Uma lista com tipos de itens dessa colunas e a quantidade de cada item.
+
+"""
+
     item_types = []
     count_items = []
+    tipos = set()
+    for data in column_list:
+        tipos.add(data)
+    item_types = list(tipos)
+    for type_item in item_types:
+        count_items.append(column_list.count(type_item))
     return item_types, count_items
 
 
