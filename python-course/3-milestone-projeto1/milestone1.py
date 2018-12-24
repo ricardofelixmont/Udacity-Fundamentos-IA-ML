@@ -28,22 +28,28 @@ def novo_filme(titulo, ano, diretor='desconhecido'):
 
 # PROCURAR FILMES PELO ANO
 def procurar_filmes_ano(ano):
+    lista = []
     for filme in filmes:
         # print(typ(filme['ano'])) # aqui vemos que tudo que vem do dicionario esta vindo como string
         if int(filme['ano']) == ano:
-            return filme
+            lista.append(filme)
+    return lista
 
 # PROCURAR FILMES PELO TUTULO
 def procurar_filmes_titulo(titulo):
+    lista = []
     for filme in filmes:
         if filme['titulo'] == titulo:
-            return filme
+            lista.append(filme)
+    return lista
 
 # PROCURAR FILMES PELO NOME DO DIRETOR
 def procurar_filmes_diretor(diretor):
+    lista = list()
     for filme in filmes:
         if filme['diretor'] == diretor:
-            return filme
+            lista.append(filme)
+    return lista
 
 # MOSTRAR TODOS OS FILMES
 def mostrar_todos():
@@ -77,22 +83,24 @@ while opcao not in [6]:
         diretor = str(input('Digite o nome do diretor: '))
 
         novo_filme(titulo, ano, diretor)
-        filme = procurar_filmes_titulo(titulo)
-        exibir_filme(filme)
-
+        lista_filmes = procurar_filmes_titulo(titulo)
+        for filme in lista_filmes:
+            exibir_filme(filme)
 
     elif opcao == 2:
         titulo = str(input('Digite o nome do filme: '))
         print(titulo)
-        filme = procurar_filmes_titulo(titulo)
-        exibir_filme(filme)
+        lista_filmes = procurar_filmes_titulo(titulo)
+        for filme in lista_filmes:
+            exibir_filme(filme)
 
 
     elif opcao == 3:
         diretor = str(input('Digite o nome do Diretor: '))
 
-        filme = procurar_filmes_diretor(diretor)
-        exibir_filme(filme)
+        lista_filmes = procurar_filmes_diretor(diretor)
+        for filme in lista_filmes:
+            exibir_filme(filme)
 
 
     elif opcao == 4:
@@ -101,9 +109,9 @@ while opcao not in [6]:
 
     elif opcao == 5:
         ano = int(input('Digite o ano de lançamento: '))
-        filme = procurar_filmes_ano(ano)
-        exibir_filme(filme)
-
+        lista_filmes = procurar_filmes_ano(ano)
+        for filme in lista_filmes:
+            exibir_filme(filme)
 
     else:
         print('Opção inválida, por favor tente novamente...')
