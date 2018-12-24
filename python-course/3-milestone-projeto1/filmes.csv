@@ -1,5 +1,11 @@
+<<<<<<< HEAD:python-course/3-milestone-projeto1/filmes.csv
 titulo,ano,diretor
 Matrix,1994,desconhecido
 Thor,1995,Novo
 Ricardo,1996,Eddie
 Era do Gelo,2005,desconhecido
+=======
+titulo,ano,diretor
+Matrix,1994,desconhecido
+Thor,1995,Novo
+>>>>>>> ae441efa2531c0511d99d749901456ed4cbd6765:python-course/3 -milestone-projeto1/filmes.csv
