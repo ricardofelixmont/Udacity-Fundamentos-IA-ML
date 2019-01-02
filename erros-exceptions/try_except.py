@@ -31,7 +31,7 @@ try:
     number4 = int(input('Type a number: '))
 except ValueError: # Dessa forma posso tratar todos as exceções individualmente
     print('ValueError: Please try again!')
-except NameError, KeyboardInterrupt: # Podemos criar uma tupla de exeções tratadas por esse bloco de excessão
+except (NameError, KeyboardInterrupt): # Podemos criar uma tupla de exeções tratadas por esse bloco de excessão
     print('Name Erros, tente novamente!')
 finally:
     print('Saindo do Try')
